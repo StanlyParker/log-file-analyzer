@@ -1,0 +1,23 @@
+# Node
+node_modules/
+**/node/modules/
+
+# build
+dist/
+frontend/dist/
+backend/dist/
+.next/
+out/
+coverage/
+
+# runtime
+.env
+.env.local
+/uploads
+/storage
+
+# system
+.DS_Store
+.vscode/
+.idea/
+EOF

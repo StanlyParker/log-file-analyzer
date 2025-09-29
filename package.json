@@ -1,0 +1,20 @@
+{
+    "name": "log-file-analyzer-monorepo",
+    "private": "true",
+    "scripts": {
+        "dev:backend": "npm --prefix packages/backend run dev",
+        "dev:frontend": "npm --prefix packages/frontend run dev",
+        "dev": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\"",
+        "build:backend": "npm --prefix packages/backend run build",
+        "build:frontend": "npm --prefix packages/frontend run build",
+        "build": "npm run build:backend && npm run build:frontend",
+        "lint": "npm --prefix packages/backend run lint && npm --prefix packages/frontend run lint",
+        "test": "npm --prefix packages/backend run test && npm --prefix packages/frontend run test",
+        "format": "npm --prefix packages/backend run format && npm --prefix packages/frontend run format",
+        "docker:up": "docker-compose up --build",
+        "docker:dpwn": "docker-compose down"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    }
+}
