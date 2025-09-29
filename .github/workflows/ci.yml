@@ -1,0 +1,63 @@
+name: CI
+
+on:
+    push:
+        branches: [ main, master ]
+    pull_requests:
+        branches: [ main, master ]
+
+jobs:
+    lint-test-build-backend:
+        name: Backend - lint / test / build
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: packages/backend
+            steps:
+                - uses: actions/checkout@v4
+                
+                - name: Use Node.js 22
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: '22'
+                    cache: 'npm'
+
+                - name: Install dependencies
+                  run: npm ci
+
+                - name: Lint backend
+                  
+                  run: npm run lint
+
+                - name: Run backend tests
+                  
+                  run: npm run test
+
+                - name: Build backend
+
+                  run: npm run build
+
+    lint-based-build-frontend:
+        name: Frontend - lint / test / build 
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: packages/frontend
+            steps:
+                - uses: actions/checkout@v4
+
+                - name: Use Node.js 22
+                  uses: actions/setup-node@v4
+                  with: 
+                    node-version: '22'
+                    cache: 'npm'
+
+                - name: Install frontend deps
+                  run: npm ci
+
+                - name: Lint frontend
+                  run: npm run lint
+
+                - name: Build frontend
+                  run: npm run build
+
