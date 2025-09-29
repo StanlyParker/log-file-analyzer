@@ -13,7 +13,7 @@ jobs:
         defaults:
             run:
                 working-directory: packages/backend
-            steps:
+        steps:
                 - uses: actions/checkout@v4
                 
                 - name: Use Node.js 22
@@ -43,21 +43,22 @@ jobs:
         defaults:
             run:
                 working-directory: packages/frontend
-            steps:
-                - uses: actions/checkout@v4
+        steps:
 
-                - name: Use Node.js 22
-                  uses: actions/setup-node@v4
-                  with: 
-                    node-version: '22'
-                    cache: 'npm'
+            - uses: actions/checkout@v4
 
-                - name: Install frontend deps
-                  run: npm ci
+            - name: Use Node.js 22
+              uses: actions/setup-node@v4
+              with: 
+                node-version: '22'
+                cache: 'npm'
 
-                - name: Lint frontend
-                  run: npm run lint
+            - name: Install frontend deps
+              run: npm ci
 
-                - name: Build frontend
-                  run: npm run build
+            - name: Lint frontend
+              run: npm run lint
+
+            - name: Build frontend
+              run: npm run build
 
